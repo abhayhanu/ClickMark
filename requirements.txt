@@ -1,0 +1,18 @@
+numpy
+pandas
+
+#face recognition
+scikit-learn
+dlib-bin
+# helps in detecting face vector points
+setuptools<70.0.0
+git+https://github.com/ageitgey/face_recognition_models.git
+
+# database
+supabase
+bcrypt # for password hashing
+
+segno # for QR code generation of urls
+pillow # for image processing
+
+streamlit # for creating web apps
