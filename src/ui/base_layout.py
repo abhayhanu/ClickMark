@@ -79,7 +79,7 @@ def style_base_layout():
 
             button[kind="primary"] {
                 font-family: 'Montserrat', sans-serif !important;
-                background: #5865F2 !important;
+                background-color: #5865F2 !important;
                 border-radius: 1.5rem !important;
                 color: white !important;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
@@ -90,7 +90,7 @@ def style_base_layout():
 
             button[kind="secondary"] {
                 font-family: 'Montserrat', sans-serif !important;
-                background: #EB459E !important;
+                background-color: #EB459E !important;
                 border-radius: 1.5rem !important;
                 color: white !important;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;

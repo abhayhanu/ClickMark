@@ -16,3 +16,6 @@ segno # for QR code generation of urls
 pillow # for image processing
 
 streamlit # for creating web apps
+
+librosa # for audio processing
+resemblyzer # for speaker recognition
