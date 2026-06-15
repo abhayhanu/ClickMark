@@ -17,5 +17,5 @@ def create_subject_dialog(teacher_id):
                 st.rerun()
             except Exception as e:
                 st.error(f"Error: {str(e)}")
-            else:
+        else:
                 st.warning("Please fill all the fields")
