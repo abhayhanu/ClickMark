@@ -72,7 +72,7 @@ ClickMark automates classroom attendance using facial and voice recognition. Tea
 
 **1. Clone the repo**
 ```bash
-git clone https://github.com/abhayhanu7054/clickmark.git
+git clone https://github.com/abhayhanu/clickmark.git
 cd clickmark
 ```
 
