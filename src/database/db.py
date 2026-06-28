@@ -36,9 +36,15 @@ def get_all_students():
     return response.data
 
 def create_student_profile(new_name, face_embeddings=None, voice_embedding = None):
-    data = {'name': new_name, 'face_embeddings': face_embeddings, 'voice_embeddings': voice_embedding}
+    data = {'name': new_name, 'face_embedding': face_embeddings, 'voice_embedding': voice_embedding}
     response = supabase.table('students').insert(data).execute() 
     return response.data
+
+def check_subject(sub_code):
+    response = supabase.table("subjects").select("subject_code").eq("subject_code", sub_code).execute()
+    if response.data:
+        return False
+    return True
 
 def create_subject(sub_code, name, section, teacher_id):
     data = {"subject_code": sub_code, "name": name, "section": section, "teacher_id": teacher_id}
@@ -46,27 +52,27 @@ def create_subject(sub_code, name, section, teacher_id):
     return response.data
 
 def get_teacher_subject(teacher_id):
-    response = supabase.table('subjects').select('*, subject_students(count), attendance_log(timestamp)').eq("teacher_id", teacher_id).execute()
+    response = supabase.table('subjects').select("*, subject_students(count), attendance_log(timestamp)").eq("teacher_id", teacher_id).execute()
     subjects = response.data
 
     for sub in subjects:
-        sub['total_students'] = sub.get("subjects_student", [{}])[0].get('count', 0) if sub.get('subject_students') else 0
+        sub['total_students'] = sub.get("subject_students", [{}])[0].get('count', 0) if sub.get('subject_students') else 0
         attendance = sub.get('attendance_log', [])
         unique_sessions = len(set(log['timestamp'] for log in attendance))
         sub['total_classes'] = unique_sessions
 
         sub.pop('subject_student', None)
-        sub.pop('attendence_log', None)
+        sub.pop('attendance_log', None)
 
     return subjects
 
 def enroll_student_to_subject(student_id, subject_id):
     data = {'student_id': student_id, "subject_id": subject_id}
-    response = supabase.table('subject_studets').insert(data).execute()
+    response = supabase.table('subject_students').insert(data).execute()
     return response.data
 
 def unenroll_student_to_subject(student_id, subject_id):
-    response = supabase.table('subject_studets').delete().eq('student_id', student_id).eq('subject_id', subject_id).execute()
+    response = supabase.table('subject_students').delete().eq('student_id', student_id).eq('subject_id', subject_id).execute()
     return response.data
 
 def get_student_subjects(student_id):
@@ -75,12 +81,12 @@ def get_student_subjects(student_id):
 
 
 def get_student_attendance(student_id):
-    response = supabase.table('attendance_logs').select('*, subjects(*)').eq('student_id', student_id).execute()
+    response = supabase.table('attendance_log').select('*, subjects(*)').eq('student_id', student_id).execute()
     return response.data
 
 
 def create_attendance(logs):
-    response = supabase.table('attendance_logs').insert(logs).execute()
+    response = supabase.table('attendance_log').insert(logs).execute()
     return response.data
 
 def get_attendance_for_teacher(teacher_id):

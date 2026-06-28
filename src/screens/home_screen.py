@@ -13,14 +13,14 @@ def home_screen():
 
     with col1:
         st.header("Teacher Portal")
-        st.image("https://tse3.mm.bing.net/th/id/OIP.iaUElCeQQflAvcfDKJ65FgHaDt?r=0&rs=1&pid=ImgDetMain&o=7&rm=3.png", width=150)
+        st.image("https://thumbs.dreamstime.com/b/charming-d-animated-female-teacher-character-presentation-cheerful-ready-to-present-holds-marker-notebook-dressed-357823021.jpg", width=150)
         if st.button('Teacher Portal', type='primary'):
             st.session_state['login_type'] = 'teacher'
             st.rerun()
 
     with col2:
         st.header("Student Portal")
-        st.image("https://tse3.mm.bing.net/th/id/OIP.iaUElCeQQflAvcfDKJ65FgHaDt?r=0&rs=1&pid=ImgDetMain&o=7&rm=3.png", width=150)
+        st.image("https://img.freepik.com/premium-vector/student-girl-cartoon-character-isolated-white-background_918868-2081.jpg", width=150)
         if st.button('Student Portal', type='primary'):
             st.session_state['login_type'] = 'student'
             st.rerun()

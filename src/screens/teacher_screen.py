@@ -73,10 +73,10 @@ def teacher_dashboard():
     if st.session_state.current_teacher_tab == "attendance_records":
         teacher_tab_attendance_records()
 
-
 def teacher_tab_take_attendance():
-    teacher_id= st.session_state.teacher_data['teacher_id']
+    teacher_id = st.session_state.teacher_data['teacher_id']
     st.header('Take AI Attendance')
+
 
     if 'attendance_images' not in st.session_state:
         st.session_state.attendance_images = []
@@ -156,7 +156,7 @@ def teacher_tab_take_attendance():
                             "Name": student['name'],
                             "ID": student['student_id'],
                             "Source": ", ".join(sources) if is_present else "-",
-                            "Status": "Present" if is_present else "Absent"
+                            "Status": "✅ Present" if is_present else "❌ Absent"
                         })
 
                         attendance_to_log.append({
@@ -166,12 +166,13 @@ def teacher_tab_take_attendance():
                             'is_present': bool(is_present)
                         })
 
-                attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
+                    attendance_result_dialog(pd.DataFrame(results), attendance_to_log)
 
     with c3:
         if st.button('Use Voice Attendance', type='primary', width='stretch', icon=':material/mic:'):
             voice_attendance_dialog(selected_subject_id)
- 
+
+
 
 def teacher_tab_manage_subjects():
     teacher_id = st.session_state.teacher_data['teacher_id']
@@ -190,18 +191,18 @@ def teacher_tab_manage_subjects():
                 ("S", 'Students', sub['total_students']),
                 ("C", 'Classes', sub['total_classes'])
             ]
-        def share_btn():
-            if st.button(f"Share Code: {sub['name']}", key=f"Share_{sub['subject_code']}", icon = ":material/share:"):
-                share_subject_dialog(sub['name'], sub['subject_code'])
-            st.space()
+            def share_btn():
+                if st.button(f"Share Code: {sub['name']}", key=f"Share_{sub['subject_code']}", icon = ":material/share:"):
+                    share_subject_dialog(sub['name'], sub['subject_code'])
+                st.space()
 
-        subject_card(
-            name=sub['name'],
-            code = sub['subject_code'],
-            section = sub['section'],
-            stats = stats,
-            footer_callback = share_btn
-            )
+            subject_card(
+                name=sub['name'],
+                code = sub['subject_code'],
+                section = sub['section'],
+                stats = stats,
+                footer_callback = share_btn
+                )
     else:
         st.info("No Subjects Found")
 

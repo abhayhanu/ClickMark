@@ -7,7 +7,7 @@ import streamlit as st
 from src.database.db import get_all_students
 
 @st.cache_resource
-def load_dlib_model():
+def load_dlib_models():
     detector = dlib.get_frontal_face_detector()
     sp = dlib.shape_predictor(
         face_recognition_models.pose_predictor_model_location()
@@ -18,15 +18,17 @@ def load_dlib_model():
     return detector, sp, facerec
 
 def get_face_embeddings(image_np):
-    detector, sp, facerec = load_dlib_model()
-    # Detect faces in the image
-    detections = detector(image_np, 1)
-    embeddings = []
-    for d in detections:
-        shape = sp(image_np, d)
-        face_embedding = facerec.compute_face_descriptor(image_np, shape, 1) # 128 dimension embedding
-        embeddings.append(np.array(face_embedding))
-    return embeddings
+    detector, sp, facerec = load_dlib_models()
+    faces = detector(image_np, 1)
+
+    encodings= []
+
+    for face in faces:
+        shape = sp(image_np, face)
+        face_descriptor = facerec.compute_face_descriptor(image_np, shape, 1) #128 embedding
+
+        encodings.append(np.array(face_descriptor))
+    return encodings
 @st.cache_resource
 def get_trained_model():
     X = []
@@ -63,7 +65,7 @@ def predict_attendance(class_image_np):
 
     model_data = get_trained_model()
     if not model_data:
-        return {}, [], 0  # embeddings, list of students, count
+        return detected_students, [], len(embeddings) # embeddings, list of students, count
     
     classifier = model_data['clf']
     X_train = model_data['X']

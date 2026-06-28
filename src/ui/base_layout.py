@@ -6,13 +6,13 @@ def style_background_home():
         """
         <style>
             .stApp {
-                background-color: #5865f2 !important;
+                background-color: #e8f9fd !important;
                 padding: 20px !important;
                 border-radius: 5px !important;
             }
 
             .stApp div[data-testid="stColumn"] {
-                background-color: #E0E3FF !important;
+                background-color: white !important;
                 padding: 2.5rem !important;
                 border-radius: 5rem !important;
             }
@@ -28,7 +28,7 @@ def style_background_dashboard():
         """
         <style>
             .stApp {
-                background-color: #E0E3FF !important;
+                background-color: #e8f9fd !important;
                 padding: 20px !important;
                 border-radius: 5px !important;
             }
@@ -74,12 +74,13 @@ def style_base_layout():
 
             h3, h4, p{
                 font-family: 'Montserrat', sans-serif !important;
-                color: #E0E3FF !important;
+                color: black !important;
+                margin-bottom: 0rem !important;
             }
 
             button[kind="primary"] {
                 font-family: 'Montserrat', sans-serif !important;
-                background-color: #5865F2 !important;
+                background-color: #5cbdb9 !important;
                 border-radius: 1.5rem !important;
                 color: white !important;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
@@ -90,7 +91,7 @@ def style_base_layout():
 
             button[kind="secondary"] {
                 font-family: 'Montserrat', sans-serif !important;
-                background-color: #EB459E !important;
+                background-color: #39a0ca !important;
                 border-radius: 1.5rem !important;
                 color: white !important;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
@@ -101,7 +102,7 @@ def style_base_layout():
 
             button[kind="tertiary"] {
                 font-family: 'Montserrat', sans-serif !important;
-                background: black !important;
+                background: #5cbdb9 !important;
                 border-radius: 1.5rem !important;
                 color: white !important;
                 box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;

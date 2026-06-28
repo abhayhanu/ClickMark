@@ -1,7 +1,7 @@
+streamlit # for creating web apps
 numpy
 pandas
-
-#face recognition
+# face recognition
 scikit-learn
 dlib-bin
 # helps in detecting face vector points
